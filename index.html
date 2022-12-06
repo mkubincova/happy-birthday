@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Happy Birthday</title>
+    <meta name="description" content="Narodeninový odpočet madunickej princeznej" />
+ 
+    <meta property="og:title" content="Happy Birthday" />
+    <meta property="og:description" content="Narodeninový odpočet madunickej princeznej" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="birthday-girl-1x.jpg" />
+
+    <link type="image/png" sizes="16x16" rel="icon" href="favicon.png">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="twinkling"></div>
+    <div class="clouds"></div>
+    <div class="container">
+        <h1>Štvrť storočia existencie madunickej princeznej</h1>
+        <div class="mars"></div>
+        <div class="cover">
+            <img alt="Dominika v poli"
+                srcset="
+                img/birthday-girl-1x.jpg 1x,
+                img/birthday-girl-2x.jpg 2x
+                "
+                src="img/birthday-girl-1x.jpg">
+        </div>
+        <!-- Display the countdown timer in an element -->
+        <div class="countdown">
+            <div class="days" data-name="days">0</div>
+            <div class="hours" data-name="hours">00</div>
+            <div class="minutes" data-name="minutes">00</div>
+            <div class="seconds" data-name="seconds">00</div>
+            <div class="done hidden">
+                <span>&#127881;</span>
+                <h2>Všetko najlepšie</h2>
+                <span>&#127881;</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+<script>
+    // Set the date we're counting down to
+    var countDownDate = new Date("Mar 24, 2023 13:30:00").getTime();
+
+    // Update the count down every 1 second
+    var x = setInterval(function () {
+
+        // Get today's date and time
+        var now = new Date().getTime();
+
+        // Find the distance between now and the count down date
+        var distance = countDownDate - now;
+
+        // Time calculations for days, hours, minutes and seconds
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Display the result in the element with id="demo"
+        document.querySelector("[data-name='days']").innerHTML = days;
+        document.querySelector("[data-name='hours']").innerHTML = hours < 10 ? "0" + hours : hours;
+        document.querySelector("[data-name='minutes']").innerHTML = minutes < 10 ? "0" + minutes : minutes;
+        document.querySelector("[data-name='seconds']").innerHTML = seconds < 10 ? "0" + seconds : seconds;
+
+        // If the count down is finished, write some text
+        if (distance < 0) {
+            clearInterval(x);
+            document.querySelector(".done").classList.remove('hidden');
+            document.querySelectorAll("[data-name]").forEach(element => {
+                element.classList.add('hidden')
+            });
+        }
+    }, 1000);
+</script>

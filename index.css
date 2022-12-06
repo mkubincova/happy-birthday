@@ -1,0 +1,216 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@400;800&display=swap');
+
+
+:root {
+    --transparent-color: #ffffff60;
+    --text-color: #fff;
+    --gradient: linear-gradient(90deg, hsla(220, 86%, 73%, 1) 0%, hsla(337, 70%, 66%, 1) 50%, hsla(257, 93%, 78%, 1) 100%);
+}
+
+
+body {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+/* stars animation */
+@keyframes move-twink-back {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: -10000px 5000px;
+    }
+}
+
+@keyframes move-clouds-back {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 10000px 0;
+    }
+}
+
+.stars,
+.twinkling,
+.clouds {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.stars {
+    background: #000 url(img/stars.png) repeat top center;
+    z-index: 0;
+}
+
+.twinkling {
+    background: transparent url(img/twinkling.png) repeat top center;
+    z-index: 1;
+    animation: move-twink-back 200s linear infinite;
+}
+
+.clouds {
+    background: transparent url(img/clouds.png) repeat top center;
+    z-index: 2;
+    opacity: .4;
+    animation: move-clouds-back 200s linear infinite;
+}
+
+.mars {
+    width: 4px;
+    height: 4px;
+    background-color: rgb(252, 250, 186);
+    border-radius: 50%;
+    position: absolute;
+    left: 70px;
+    top: 140px;
+    box-shadow: 0 0 5px rgb(252, 250, 186),
+                0 0 10px rgb(255, 98, 0),
+                0 0 15px rgb(255, 47, 0);
+}
+
+
+/* content */
+.container {
+    position: relative;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    max-width: 400px;
+    margin: auto;
+    z-index: 3;
+    color: var(--text-color);
+}
+
+/* image */
+.cover {
+    width: fit-content;
+    margin: auto;
+    position: relative;
+    margin-top: 50px;
+}
+
+.cover img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    padding: 15px;
+}
+
+.cover::before {
+    content: url(img/tiara.svg);
+    display: block;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: -10px;
+    right: 0;
+    transform: rotate(35deg);
+    transform-origin: center right;
+}
+
+/* headings  */
+h1, h2 {
+    font-family: 'Dancing Script', cursive;
+}
+
+h1 {
+    font-size: 2.5em;
+    background-color: #ffad99;
+    background-image:
+        radial-gradient(at 65% 99%, hsla(220, 86%, 73%, 1) 0px, transparent 50%),
+        radial-gradient(at 30% 21%, hsla(337, 70%, 66%, 1) 0px, transparent 50%),
+        radial-gradient(at 48% 74%, hsla(171, 70%, 68%, 1) 0px, transparent 50%),
+        radial-gradient(at 66% 5%, hsla(237, 97%, 79%, 1) 0px, transparent 50%),
+        radial-gradient(at 5% 62%, hsla(257, 93%, 78%, 1) 0px, transparent 50%),
+        radial-gradient(at 2% 92%, hsla(346, 91%, 70%, 1) 0px, transparent 50%),
+        radial-gradient(at 93% 1%, hsla(319, 77%, 74%, 1) 0px, transparent 50%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin: 5px 0;
+}
+
+
+/* countdown */
+.countdown {
+    font-size: 1.5em;
+    padding: 5px;
+    border: 3px solid;
+    border-image-slice: 1;
+    border-image-source: var(--gradient);
+    width: 300px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.countdown > div {
+    flex: 1;
+    position: relative;
+    text-align: center;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.countdown > div:not(.done):nth-child(1)::before {
+    content: '';
+    position: absolute;
+    right: -2px;
+    top: 10%;
+    background-color: var(--transparent-color);
+    width: 1px;
+    height: 80%;
+}
+
+.countdown > div:not(.done):nth-child(n+3)::before {
+    content: ':';
+    font-size: 0.3em;
+    position: absolute;
+    left: -2px;
+    top: 1.7em;
+    transform: translate(0, 50%);
+    color: var(--transparent-color);
+}
+
+.countdown > div:not(.done):after {
+    content: attr(data-name);
+    font-size: 0.3em;
+    font-weight: 400;
+    color: var(--transparent-color);
+}
+
+.countdown > .done {
+   flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.done span:first-of-type {
+    transform: rotate(270deg);
+}
+
+
+/* utility classes */
+.hidden {
+    display: none !important;
+}
+
+.hidden::before, .hidden::after {
+    content: none !important;
+}
